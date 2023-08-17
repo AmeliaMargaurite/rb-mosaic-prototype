@@ -1,0 +1,85 @@
+/* These variables should live in a separate file, loaded in the head of each page */
+html {
+	--brand-primary-hue: 219deg;
+	--brand-secondary-hue: 20;
+	--brand-secondary-text-color: hsl(var(--brand-secondary-hue), 80%, 40%);
+
+	--warning-hue: 0;
+	--c-button-text-color: hsl(var(--brand-primary-hue), 100%, 50%);
+	--c-button-text-color-white: hsl(219, 10%, 100%);
+
+	--c-button-border-radius: 0.4rem;
+	--c-button-border-style: 1px solid transparent;
+	--c-button-padding-inline: 2rem;
+	--c-button-padding-block: 1.2rem;
+	--c-button-padding-inline-mini: 0.8rem;
+	--c-button-padding-block-mini: 0.4rem;
+	--c-button-cursor: pointer;
+
+	/* Button Shadow States */
+	--c-button-box-shadow-start: 2px 2px 4px -2px hsl(var(--brand-primary-hue), 60%, 50%, 0.5),
+		2px 2px 4px hsl(219, 20%, 20%, 0.5);
+	--c-button-box-shadow-hover: 0px 0px 2px -2px hsl(var(--brand-primary-hue), 60%, 50%, 0.5),
+		0px 0px 2px hsl(219, 20%, 20%, 0.5);
+
+	/* Primary Button */
+	--c-button-primary-background: hsl(var(--brand-primary-hue), 100%, 50%);
+	--c-button-primary-color: var(--c-button-text-color-white);
+
+	/* Secondary Button */
+	--c-button-secondary-background: hsl(var(--brand-secondary-hue), 100%, 40%);
+	--c-button-secondary-color: var(--c-button-text-color-white);
+	--c-button-secondary-border: 1px solid
+		hsl(var(--brand-secondary-hue), 100%, 50%);
+
+	/* Warning Button */
+	--c-button-warning-background: transparent;
+	--c-button-warning-border: 1px solid hsl(var(--warning-hue), 60%, 50%);
+	--c-button-warning-color: hsl(var(--warning-hue), 60%, 50%);
+}
+
+/* Base Button Styling */
+.c-button {
+	font-family: inherit;
+	font-size: inherit;
+
+	border-radius: var(--c-button-border-radius);
+	border: var(--c-button-border-style);
+	padding-inline: var(--c-button-padding-inline);
+	padding-block: var(--c-button-padding-block);
+	box-shadow: var(--c-button-box-shadow-start);
+	cursor: var(--c-button-cursor);
+}
+
+/* Base Button States */
+.c-button:hover {
+	box-shadow: var(--c-button-box-shadow-hover);
+}
+
+/* Primary Button Styling */
+.c-button.c-button--primary {
+	background: var(--c-button-primary-background);
+	color: var(--c-button-primary-color);
+	border-radius: var(--c-button-border-radius);
+	font-weight: 600;
+}
+
+/* Secondary Button Styling */
+.c-button.c-button--secondary {
+	background: var(--c-button-secondary-background);
+	color: var(--c-button-secondary-color);
+	border: var(--c-button-secondary-border);
+	font-weight: 600;
+}
+
+/* Warning Button Styling */
+.c-button.c-button--warning {
+	background: var(--c-button-warning-background);
+	border: var(--c-button-warning-border);
+	color: var(--c-button-warning-color);
+}
+
+.c-button.c-button--mini {
+	padding-inline: var(--c-button-padding-inline-mini);
+	padding-block: var(--c-button-padding-block-mini);
+}

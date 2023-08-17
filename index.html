@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="./button.js"></script>
+		<link rel="stylesheet" href="button.css" />
+		<title>Prototype</title>
+		<style>
+			*,
+			*:before,
+			*:after {
+				box-sizing: border-box;
+				padding: 0;
+				margin: 0;
+			}
+			html,
+			button,
+			input {
+				font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+					Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+					sans-serif;
+				font-size: 0.625em;
+			}
+
+			body {
+				font-size: 1.6rem;
+			}
+
+			main {
+				display: grid;
+				row-gap: 3.2rem;
+				padding: 3.2rem;
+				max-width: 1200px;
+				margin: auto;
+			}
+
+			h1,
+			h2 {
+				font-weight: 600;
+			}
+
+			section {
+				display: grid;
+				row-gap: 1.6rem;
+			}
+
+			pre {
+				max-width: 100%;
+				overflow-x: auto;
+				display: grid;
+			}
+			pre code {
+				display: grid;
+				background: black;
+				color: white;
+				width: max-content;
+				padding: 3.2rem;
+				border-radius: 0.8rem;
+				tab-size: 3.2rem;
+			}
+
+			figure {
+				display: grid;
+				row-gap: 0.8rem;
+				justify-items: center;
+			}
+
+			figcaption {
+				border: 1px solid hsl(0, 0%, 0%, 0.25);
+				padding: 1.6rem;
+				border-radius: 0.4rem;
+			}
+
+			.buttons--wrapper {
+				display: flex;
+				flex-wrap: wrap;
+				row-gap: 1.6rem;
+				column-gap: 0.8rem;
+			}
+
+			.header--content {
+				display: grid;
+				row-gap: 1.6rem;
+			}
+
+			@media (min-width: 768px) {
+				figure {
+					max-width: 80%;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<main>
+			<div class="header--content">
+				<h1>Using a style library</h1>
+				<p>
+					Below there are two sets of buttons. The first set uses the native
+					HTML element 'button' and while the second set are created as Web
+					Components which contain a 'button' element, and utilise the Shadow
+					DOM.
+					<br />
+					<br />
+					Both sets of buttons use the same CSS file "buttons.css", and the same
+					classes and styling. The native buttons receive their styling from the
+					global styles, where the Web Component buttons import this file
+					separately.
+					<br />
+					<br />
+					The way in which both types of buttons are used are very similar, as
+					can be seen in the code snippet below each set. Which ever one is
+					used, the visual design remains the same.
+				</p>
+				<p>
+					A benefit of using the Web Component using Shadow DOM option is the
+					encapsulation of the code and styling. This safeguards the element
+					from accidentally being affected by a change to a general CSS targeter
+					which would normally affect them.
+					<br />
+					<br />
+
+					As an example of this functionality this button will try to target all
+					"button" elements on the page and change their background colour to
+					green:
+					<button
+						class="c-button c-button--mini c-button--warning"
+						onclick="document.querySelectorAll('button').forEach(btn => btn.style.background = 'green')"
+					>
+						Trigger errant CSS code</button
+					>.
+					<br />
+					<br />
+					The web component buttons remain unaffected thanks to the use of the
+					Shadow DOM, even though they contain the native HTML button element
+					within.
+				</p>
+			</div>
+
+			<section>
+				<h2>Native Buttons</h2>
+				<div class="buttons--wrapper">
+					<button class="c-button c-button--primary">
+						Primary Native Button
+					</button>
+					<button class="c-button c-button--secondary">
+						Secondary Native Button
+					</button>
+					<button class="c-button c-button--warning">
+						Warning Native Button
+					</button>
+				</div>
+				<figure>
+					<figcaption>
+						HTML code showing the use of native button element with
+						corresponding class names to be displayed the same as the below
+						custom button
+					</figcaption>
+					<pre>
+						<code id="native-buttons">
+						</code>
+					</pre>
+				</figure>
+			</section>
+			<section>
+				<h2>Web Component Buttons</h2>
+				<div class="buttons--wrapper">
+					<custom-button c-style="primary">
+						Primary Custom Button
+					</custom-button>
+					<custom-button c-style="secondary">
+						Secondary Custom Button
+					</custom-button>
+					<custom-button c-style="warning">
+						Warning Custom Button
+					</custom-button>
+				</div>
+				<figure>
+					<figcaption>
+						HTML code showing how the example custom button would be used,
+						passing the style type to the attribute 'c-style' to the custom
+						element called custom-button.
+					</figcaption>
+					<pre>
+						<code id="custom-buttons">
+						</code>
+					</pre>
+				</figure>
+			</section>
+		</main>
+		<script>
+			const customButtonsCode = document.querySelector("#custom-buttons");
+			customButtonsCode.textContent = `<custom-button c-style=\"primary\">\n\tPrimary Custom Button\n</custom-button>\n<custom-button c-style=\"secondary\">\n\tSecondary Custom Button\n</custom-button>\n<custom-button c-style=\"warning\">\n\tWarning Custom Button\n</custom-button>`;
+
+			const nativeButtonsCode = document.querySelector("#native-buttons");
+			nativeButtonsCode.textContent =
+				'<button class="c-button c-button--primary">\n\tPrimary Native Button\n</button>\n<button class="c-button c-button--secondary">\n\tSecondary Native Button\n</button>\n<button class="c-button c-button--warning">\n\tWarning Native Button\n</button>';
+			// nativeButtonsCode.textContent = `<button class="c-button primary--button">\n\tPrimary Native Button\n</button>\n\t<button class=\"c-button secondary--button\">\n\tSecondary Native Button\n</button>\n<button class=\"c-button warning--button\">\n\tWarning Native Button\n</button>`;
+		</script>
+	</body>
+</html>
